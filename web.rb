@@ -4,6 +4,7 @@ require 'yaml'
 require 'omniauth-twitter'
 require 'twitter'
 
+set :server, 'webrick'
 CONFIG = YAML.load_file(File.expand_path('../config/config.yml', __FILE__))
 
 configure do
