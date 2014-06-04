@@ -24,7 +24,7 @@ end
 
 before do
   # /auth/からパスが始まる時はTwitterへリダイレクトしたいわけではないので
-  pass if request.path_info =~ /^\/auth\//
+  pass if request.path_info == '/' || request.path_info =~ /^\/auth\//
 
   # /auth/twitterはOmniAuthが使います
   # /auth/twitterに当てはまる場合、Twitterへリダイレクトします。
@@ -44,7 +44,11 @@ get '/auth/failure' do
 end
 
 get '/' do
-  erb :index
+  if current_user
+    erb :index
+  else
+    erb :index_no_login
+  end
 end
 
 get '/a-twi' do
