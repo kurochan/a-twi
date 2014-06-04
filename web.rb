@@ -44,7 +44,7 @@ get '/auth/failure' do
 end
 
 get '/' do
-  '<html><h3><a href=\'/a-twi\'>投稿する</a></h3></html>'
+  erb :index
 end
 
 get '/a-twi' do
@@ -54,6 +54,6 @@ get '/a-twi' do
     :access_token => session[:auth][:token],
     :access_token_secret => session[:auth][:secret]
   )
-  client.update "暑い"
-  '<html><h1>投稿しました</h1></br><a href=\'/\'>戻る</a></html>'
+  client.update "暑い #a_twi"
+  erb :after_tweet
 end
